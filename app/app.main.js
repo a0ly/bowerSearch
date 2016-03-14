@@ -2,12 +2,28 @@
    'use strict';
    angular
       .module('bowerSearchApp')
-      .controller('mainCtrl', mainCtrl);
+      .controller('indexCtrl', indexCtrl)
+      .controller('searchCtrl', searchCtrl);
 
-   mainCtrl.$inject = ['bowerSvc']
-   function mainCtrl(bowerSvc) {
+   indexCtrl.$inject = ['bowerSvc', '$window'];
+   function indexCtrl(bowerSvc, $window) {
       var vm = this;
       vm.packages = bowerSvc.get();
-      console.log(vm.packages);
+      vm.goRepository = goRepository;
+
+      function goRepository(pack) {
+         $window.open(pack.website);
+      }
    }
+
+   searchCtrl.$inject = ['bowerSvc','$location','$routeParams'];
+   function searchCtrl(bowerSvc, $location, $routeParams) {
+      var vm = this;
+      vm.keyword = $routeParams.keyword;
+      bowerSvc.search(vm.keyword)
+      .then(function(result){
+         vm.searchList = result;
+      });
+   }
+
 })();
