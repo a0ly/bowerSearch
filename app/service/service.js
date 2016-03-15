@@ -9,7 +9,6 @@
    bowerService.$inject = ['$http', '$q', '$timeout'];
    function bowerService($http, $q, $timeout) {
       var vm = this;
-      var deffered = $q.defer();
       vm.defaultLimit = 9;
       vm.packages = {list:[]};
       vm.activate = activate;
@@ -104,34 +103,44 @@
          return vm.packages;
       }
 
-      function search(keyword, passedDeffer) {
-         
-         var deffer = passedDeffer || deffered;
+      function search ( keyword ) {
+         var result = [];
+         var deffer = $q.defer();
+         var keyList = keyword.split(' ');
 
-         if(vm.packages.stateInit) {
-            $timeout(function(){
-               search(keyword, deffer);
-            }, 200);
-         } else {
-            var result = _.chain(vm.packages.list)
-               .filter(function(o){
+         result = _.chain(vm.packages.list)
+            .filter(function(o) {
+                  if(o.name == keyword) {
+                     o.priority = 100;
+                     return true;
+                  }
                   if(o.name.indexOf(keyword) > -1) {
+                     o.priority = 90;
                      return true;
                   } else if(o.description && o.description.indexOf(keyword) > -1) {
+                     o.priority = 0;
                      return true;
-                  } else if(o.owner.indexOf(keyword) > -1) {
+                  } else if(o.owner == keyword) {
+                     o.priority = 100;
+                     return true;
+                  }
+                  else if(o.owner.indexOf(keyword) > -1) {
+                     o.priority = 0;
                      return true;
                   } else {
                      for(var i=0; o.keywords && i<o.keywords.length; i++) {
                         if(o.keywords[i].indexOf(keyword) > -1) {
+                           o.priority = 0;
                            return true;
                         }
                      }
                   }
-               })
-               .value();
-            deffer.resolve(result);
-         }
+            })
+            .orderBy(['priority','stars', 'forks'],['desc', 'desc', 'desc'])
+            .value();
+
+         deffer.resolve(result);
+
          return deffer.promise;
       }
    }

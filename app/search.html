@@ -2,11 +2,31 @@
    <div id="search-result-string">
       This is the result from the "{{se.keyword}}" 
    </div>
-   <div>
-      <ul>
-         <li ng-repeat="package in se.searchList">
-            {{package}}
-         </li>
-      </ul>
+   <div id="search-result-container">
+      <div class="row" ng-repeat="package in se.searchList">
+         <div class="col-sm-offset-2 col-sm-8">
+            <div class="panel panel-default">
+               <div class="panel-body">
+                  <div class="package-name pointer" ng-click="vm.goRepository(package)">
+                     {{package.name}}
+                  </div>
+                  <div class="package-about">
+                     {{package.created | date:'yyyy/MM/dd'}} published by {{package.owner}}
+                  </div>
+                  <div class="package-description">
+                     {{package.description}}
+                  </div>
+                  <div class="package-stat">
+                     <span>
+                        <i class="fa fa-star" style="color:#edb627"></i> {{package.stars | number}}
+                     </span>
+                     <span style="margin-left:15px;">
+                        <i class="fa fa-code-fork"></i> {{package.forks | number}}
+                     </span>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
    </div>
 </div>

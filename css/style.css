@@ -99,3 +99,16 @@ body {
    text-align: center;
 }
 
+#search-result-container {
+
+}
+#search-result-container .package-name {
+   font-size:1.3em;
+   font-weight: bold;
+}
+#search-result-container .package-description {
+   margin-top:5px;
+}
+#search-result-container .package-stat {
+   margin-top:5px;
+}

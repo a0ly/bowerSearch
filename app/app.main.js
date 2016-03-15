@@ -16,14 +16,31 @@
       }
    }
 
-   searchCtrl.$inject = ['bowerSvc','$location','$routeParams'];
-   function searchCtrl(bowerSvc, $location, $routeParams) {
+   searchCtrl.$inject = ['$scope', '$timeout','bowerSvc','$location','$routeParams'];
+   function searchCtrl( $scope, $timeout, bowerSvc, $location, $routeParams ) {
       var vm = this;
       vm.keyword = $routeParams.keyword;
-      bowerSvc.search(vm.keyword)
-      .then(function(result){
-         vm.searchList = result;
-      });
+      vm.goRepository = goRepository;
+
+      activate();
+
+      function activate() {
+         vm.searchList = [];
+         if( bowerSvc.get().stateInit ) {
+            $timeout(function() {
+               activate();
+            }, 200);
+         } else {
+            bowerSvc.search(vm.keyword)
+            .then(function(result) {
+               vm.searchList = result;
+            });
+         }
+      }
+      
+      function goRepository(pack) {
+         $window.open(pack.website);
+      }
    }
 
 })();
