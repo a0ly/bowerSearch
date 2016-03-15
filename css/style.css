@@ -1,0 +1,101 @@
+
+body {
+    font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif;
+    color: #543729;
+    background-color: #fafafa;
+}
+
+.center {
+   margin:0 auto 0 auto;
+   left: 0; right: 0;
+}
+.inline-block {
+   display: inline-block;
+   vertical-align: top;
+}
+.pointer {
+   cursor: pointer;
+}
+.pointer:hover {
+   opacity: 0.5;
+}
+
+.bower-color {
+   color: rgb(84, 55, 41);
+}
+.form-control {
+   border-radius: 0px;
+}
+
+#bower-search-container {
+   padding-top: 30px;
+   padding-bottom: 60px;
+}
+#bower-search-container h3 {
+   text-align: center;
+   margin-bottom: 15px;
+}
+#bower-search-box {
+   width: 100%;
+}
+#bower-search-box input {
+   width: 100%;
+   height:45px;
+   padding-left:20px;
+}
+#bower-search-keyword-list {
+   text-align: center;
+   margin-top:15px;
+   margin-bottom: 30px;
+}
+#bower-search-keyword-list li {
+   display: inline;
+   list-style: none;
+   margin-right: 5px;
+   font-size:1em;
+}
+#bower-header {
+   padding-top: 60px;
+   background-color: #ffcc2f; 
+
+}
+#bower-logo {
+   width: 100px;
+}
+#bower-header-logo {
+   width: 602px;
+   margin-bottom: 30px;
+}
+#bower-header h1 {
+   margin-left: 47px;
+   font-weight: bold;
+}
+.package-box {
+   margin-bottom: 15px;
+}
+.package-box .package-name {
+   width: 100%;
+   font-size: 1.2em;
+   font-weight: bold;
+}
+.package-box .package-about {
+   padding-left: 23px;
+   color:#666666;
+}
+.package-box .package-description {
+   font-size:1em;
+   padding-left: 23px;
+   width:100%;
+   height:40px;
+   overflow: hidden;
+   margin-top:5px;
+   margin-bottom: 5px;
+}
+
+#search-result-string {
+   font-size:1.4em;
+   padding-top: 20px;
+   padding-bottom: 20px;
+   text-align: center;
+}
+

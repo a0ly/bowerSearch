@@ -2,5 +2,5 @@
 (function() {
    'use strict';
    angular
-      .module('bowerSearchApp', []);
+      .module('bowerSearchApp.service', []);
 })();
