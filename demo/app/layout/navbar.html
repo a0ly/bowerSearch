@@ -1,0 +1,29 @@
+<div id="bower-header">
+   <div class="row">
+      <div class="col-sm-offset-2 col-sm-8">
+         <div class="center" id="bower-header-logo">
+            <a href ng-click="nav.goIndex()">
+               <img src="http://bower.io/img/bower-logo.png" alt="bower logo" id="bower-logo">
+            </a>
+            <h1 class="bower-color inline-block"> Search bower package</h1>
+         </div>
+         <div id="bower-search-box">
+            <form ng-submit="nav.search()">
+               <div class="input-group">
+                  <input type="text" placeholder="find packages" class="form-control" ng-model="nav.query">
+                  <div class="input-group-addon" style="background:color:white">
+                     <i class="fa fa-search fa-2x"></i>
+                  </div>
+               </div>
+            </form>
+         </div>
+         <div id="bower-search-keyword-list">
+            <ul ng-cloak>
+               <li ng-repeat="package in nav.packages.mostKeywords">
+                  {{package.keyword}} <span class="badge">{{package.count | number}}</span>
+               </li>
+            </ul>
+         </div>
+      </div>
+   </div>
+</div>
